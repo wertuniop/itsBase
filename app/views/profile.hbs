@@ -1,0 +1,39 @@
+<div class="favourites">
+    <p>Избранное</p>
+    {{#each favourites}}
+        <div class = 'publication-card'>
+            <div>
+                <p>{{this.typeP}}·Курс {{this.course}}·Семестр {{this.semester}}·{{this.subject}}</p>
+            </div>
+            <div>
+                <p>{{this.date}}</p>
+                <div class="rating-info"></div>
+                <a href="{{this.path}}" download>dow</a>
+                <button class="add-favourites">fav</button>
+            </div>
+        </div>
+    {{else}}
+        <p>Тут пока ничего нет</p>
+    {{/each}}
+</div>
+<div class="myPublication">
+    <p>Мои публикации</p>
+    {{#each myPublication}}
+        <div class = 'publication-card'>
+            <div>
+                <p>{{this.typeP}}·Курс {{this.course}}·Семестр {{this.semester}}·{{this.subject}}</p>
+            </div>
+            <div>
+                <p>{{this.date}}</p>
+                <div class="rating-info"></div>
+                <a href="{{this.path}}" download>dow</a>
+                <button class="add-favourites">fav</button>
+                <button class="delete-pub">delete</button>
+            </div>
+        </div>
+    {{else}}
+    <p>Тут пока ничего нет</p>
+    {{/each}}
+</div>
+
+<script type="module" src = 'js/addToFav.js'></script>

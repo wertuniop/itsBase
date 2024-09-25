@@ -1,0 +1,69 @@
+<div class = 'filterContainer'>
+    <form id = 'filterForm'>
+        <select name="typeP">
+            <option value="" disabled selected>Тип публикации</option>
+            {{#each dropsdownData.typesP}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <select name="direction">
+            <option value="" disabled selected>Направление</option>
+            {{#each dropsdownData.directions}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <select name="subject">
+            <option value="" disabled selected>Предмет</option>
+            {{#each dropsdownData.subjects}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <select name="semester">
+            <option value="" disabled selected>Семестр</option>
+            {{#each dropsdownData.semesters}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <select name="course">
+            <option value="" disabled selected>Курс</option>
+            {{#each dropsdownData.courses}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <input type="submit" value="Применить">
+    </form>
+
+</div>
+
+<div><p>{{filter}}</p></div>
+<div>
+    {{#each resultData}}
+        <div class = 'publication-card'>
+            <div>
+                <p>{{this.typeP}}·Курс {{this.course}}·Семестр {{this.semester}}·{{this.subject}}</p>
+            </div>
+            <div>
+                <p>{{this.date}}</p>
+                <div class="rating-info"></div>
+                <a href="{{this.path}}" download>dow</a>
+                <button class="add-favourites">fav</button>
+            </div>
+        </div>
+    {{else}}
+        <p>Тут пока ничего нет</p>
+    {{/each}}
+</div>
+
+<script type="module" src = 'js/index.js'></script>
+<script type="module" src = 'js/addToFav.js'></script>
+

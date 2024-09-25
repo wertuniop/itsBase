@@ -1,0 +1,19 @@
+
+<div class = 'regLogContainer'>
+    <div id = 'errorMessage' class = 'errorMessage'>
+        <!-- добавишь в css display:none, js сам меняет-->
+    </div>
+
+    <form id = 'registerForm' method="post">
+        <label>Логин</label><br>
+        <input type="text" name="nickname" required>
+        <label>Пароль</label><br>
+        <input type="text" name="password" required>
+        <label>Повторите пароль</label><br>
+        <input type="text" name="repeatPassword" required>
+        <input type="submit" value="Регистрация" />
+    </form>
+</div>
+
+
+<script type="module" src = 'js/registerPost.js'></script>

@@ -1,0 +1,54 @@
+<div class = 'createContainer'>
+    <div id = 'errorMessage' class = 'errorMessage'>
+        <!-- добавишь в css display:none, js сам меняет-->
+    </div>
+
+    <form id = 'createForm' method="post" enctype="multipart/form-data">
+        <input type="file" name="filedata" id='fileInput' placeholder="Файл" required>
+        <select name="typeP" required>
+            <option value="" disabled selected>Тип публикации</option>
+            {{#each dropsdownData.typesP}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <select name="direction" required>
+            <option value="" disabled selected>Направление</option>
+            {{#each dropsdownData.directions}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <select name="subject" required>
+            <option value="" disabled selected>Предмет</option>
+            {{#each dropsdownData.subjects}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <select name="semester" required>
+            <option value="" disabled selected>Семестр</option>
+            {{#each dropsdownData.semesters}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <select name="course" required>
+            <option value="" disabled selected>Курс</option>
+            {{#each dropsdownData.courses}}
+            <option>{{this}}</option>
+            {{else}}
+            {{/each}}
+        </select>
+
+        <input type="submit" value="Создать">
+    </form>
+
+</div>
+
+
+<script type="module" src = 'js/create.js'></script>
