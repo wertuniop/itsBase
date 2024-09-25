@@ -1,3 +1,4 @@
+const { error } = require('console');
 const {PublicationModel} = require('../models/publication');
 const {UserModel} = require('../models/user');
 
@@ -26,10 +27,14 @@ exports.DataService = class {
 
     async delete (id) {
         const deletePost = await PublicationModel.findByIdAndDelete(id)
-        if (deletePost) {
+        const delFav = await UserModel.updateMany(
+            { favourites: id },
+            { $pull: { favourites: id } }
+        );
+        if (deletePost && delFav) {
             return true;
         }
-        return false;
+        throw new Error('delete false');
     }
 
 

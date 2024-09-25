@@ -3,6 +3,7 @@ const multer = require('multer');
 const {isAuth} = require('../middlewares/isAuth');
 const {DropdownModel} = require('../models/dropdown_values');
 const {DataService} = require('../services/interacrionData');
+const { PublicationModel } = require("../models/publication");
 
 
 const app = express.Router();
@@ -62,13 +63,8 @@ app.post('/create', isAuth, upload.single('file'),async (req, res) => {
         if (!req.file) {
             return res.status(400).json({ e: 'Файл не загружен' });
         }
-
-
-        console.log(req.user.data._id);
         const dataSave = new DataService;
-
         await dataSave.create(req.body, req.user.data._id);
-        console.log(await dataSave.get());
 
         return res.status(200).end();
     }
@@ -82,13 +78,32 @@ app.post('/addToFav', isAuth, async (req, res) => {
         const dataService = new DataService;
         dataService.addToFav(req.user.data._id, req.body.pathPub);
 
-        res.status(200);
+        res.status(200).end();
 
     }
     catch (e) {
-        res.status(500);
+        res.status(500).end();
         console.log(e);
     }
+});
+
+app.post('/deletePub', isAuth, async(req, res) => {
+    try {
+        const dataService = new DataService;
+        var pubId = await PublicationModel.findOne({path: req.body.pathPub});
+
+        if (req.user.data._id != pubId.idUser) {
+            return res.status(500).json({e: 'user dont create pub'}).end();
+        }
+        pubId = pubId._id;
+        dataService.delete(pubId);
+        res.status(200).end();
+    }
+    catch (e) {
+        console.log(e);
+        res.status(500).end();
+    }
+    
 });
 
 

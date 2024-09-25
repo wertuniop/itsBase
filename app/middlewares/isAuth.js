@@ -4,15 +4,16 @@ require('dotenv').config({ path: '../../.env' });
 
 
 exports.isAuth = (req, res, next) => {
-    if (!req.cookies.jwt.token) {
+    if (!req.cookies.jwt) {
         console.log('!token');
         return res.redirect('/login');
     }
 
-    const secretKey = process.env.SECRETJWT;
-    const token = req.cookies.jwt.token;
+    
 
     try {
+        const secretKey = process.env.SECRETJWT;
+        const token = req.cookies.jwt.token;
         const user = jwt.verify(token, secretKey);
         
         req.user = user;
